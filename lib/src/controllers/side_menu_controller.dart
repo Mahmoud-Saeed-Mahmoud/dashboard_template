@@ -127,6 +127,16 @@ class SideMenuController extends GetxController {
       }
     } else if (!found) {
       for (var element in sideMenuItems) {
+        sideMenuItems[sideMenuItems.indexOf(element)] =
+            sideMenuItems[sideMenuItems.indexOf(element)]
+                .copyWith(isSelected: false);
+        sideMenuItems[sideMenuItems.indexOf(element)] =
+            sideMenuItems[sideMenuItems.indexOf(element)].copyWith(
+          children: sideMenuItems[sideMenuItems.indexOf(element)]
+              .children
+              .map((e) => e = e.copyWith(isSelected: false))
+              .toList(),
+        );
         if (element.children.isNotEmpty) {
           for (var child in element.children) {
             if (child.id == id) {
@@ -144,10 +154,6 @@ class SideMenuController extends GetxController {
                           .indexOf(child)]
                       .copyWith(isSelected: true);
             } else {
-              sideMenuItems[sideMenuItems.indexOf(element)] =
-                  sideMenuItems[sideMenuItems.indexOf(element)].copyWith(
-                isSelected: false,
-              );
               sideMenuItems[sideMenuItems.indexOf(element)].children[
                       sideMenuItems[sideMenuItems.indexOf(element)]
                           .children
