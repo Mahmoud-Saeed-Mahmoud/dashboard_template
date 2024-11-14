@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dashboard_template/src/models/side_menu_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +17,6 @@ class SideMenuController extends GetxController {
         onTap: () {
           setSelectedItem(id: sideMenuItems[0].id);
           updateContentWidget(contentWidget: const Text("Dashboard"));
-          log("Dashboard");
         },
       ),
       SideMenuItemModel(
@@ -29,7 +26,6 @@ class SideMenuController extends GetxController {
         onTap: () {
           setSelectedItem(id: sideMenuItems[1].id);
           updateContentWidget(contentWidget: const Text("Settings"));
-          log("Settings");
         },
       ),
       SideMenuItemModel(
@@ -44,7 +40,6 @@ class SideMenuController extends GetxController {
             onTap: () {
               setSelectedItem(id: sideMenuItems[2].children[0].id);
               updateContentWidget(contentWidget: const Text("SubItem 1"));
-              log("SubItem 1");
             },
           ),
           SideMenuItemModel(
@@ -54,14 +49,12 @@ class SideMenuController extends GetxController {
             onTap: () {
               setSelectedItem(id: sideMenuItems[2].children[1].id);
               updateContentWidget(contentWidget: const Text("SubItem 2"));
-              log("SubItem 2");
             },
           ),
         ],
         onTap: () {
           setSelectedItem(id: sideMenuItems[2].id);
           expandList(index: 2);
-          log("SubItems");
         },
       ),
       SideMenuItemModel(
@@ -71,7 +64,6 @@ class SideMenuController extends GetxController {
         onTap: () {
           setSelectedItem(id: sideMenuItems[3].id);
           updateContentWidget(contentWidget: const Text("Logout"));
-          log("Logout");
         },
       ),
     ];
