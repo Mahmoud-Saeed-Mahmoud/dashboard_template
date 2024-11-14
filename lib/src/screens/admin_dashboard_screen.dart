@@ -66,101 +66,105 @@ class AdminDashboardScreen extends GetView<SideMenuController> {
                         ),
                         itemCount: controller.sideMenuItems.length,
                         itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: controller.sideMenuItems[index].onTap,
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    controller
-                                            .sideMenuItems[index].leadingIcon ??
-                                        const SizedBox.shrink(),
-                                    AnimatedSize(
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                      child: controller.isMenuOpen
-                                          ? const SizedBox(width: 10)
-                                          : const SizedBox.shrink(),
-                                    ),
-                                    AnimatedSize(
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                      child: controller.isMenuOpen
-                                          ? Text(
-                                              controller
-                                                  .sideMenuItems[index].title,
-                                              style: const TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 16,
+                          return AnimatedSize(
+                            duration: const Duration(milliseconds: 300),
+                            child: InkWell(
+                              onTap: controller.sideMenuItems[index].onTap,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      controller.sideMenuItems[index]
+                                              .leadingIcon ??
+                                          const SizedBox.shrink(),
+                                      AnimatedSize(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        child: controller.isMenuOpen
+                                            ? const SizedBox(width: 10)
+                                            : const SizedBox.shrink(),
+                                      ),
+                                      AnimatedSize(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        child: controller.isMenuOpen
+                                            ? Text(
+                                                controller
+                                                    .sideMenuItems[index].title,
+                                                style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                ),
+                                              )
+                                            : const SizedBox.shrink(),
+                                      ),
+                                      const Spacer(),
+                                      AnimatedSize(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        child: controller.isMenuOpen
+                                            ? controller.sideMenuItems[index]
+                                                    .trailingIcon ??
+                                                const SizedBox.shrink()
+                                            : const SizedBox.shrink(),
+                                      ),
+                                    ],
+                                  ),
+                                  if (controller
+                                      .sideMenuItems[index].isExpanded)
+                                    ...controller.sideMenuItems[index].children!
+                                        .map(
+                                      (child) => InkWell(
+                                        onTap: child.onTap,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8.0),
+                                          child: Row(
+                                            children: [
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                  left: 5,
+                                                ),
                                               ),
-                                            )
-                                          : const SizedBox.shrink(),
-                                    ),
-                                    const Spacer(),
-                                    AnimatedSize(
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                      child: controller.isMenuOpen
-                                          ? controller.sideMenuItems[index]
-                                                  .trailingIcon ??
-                                              const SizedBox.shrink()
-                                          : const SizedBox.shrink(),
-                                    ),
-                                  ],
-                                ),
-                                if (controller.sideMenuItems[index].isExpanded)
-                                  ...controller.sideMenuItems[index].children!
-                                      .map(
-                                    (child) => GestureDetector(
-                                      onTap: child.onTap,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 8.0),
-                                        child: Row(
-                                          children: [
-                                            const Padding(
-                                              padding: EdgeInsets.only(
-                                                left: 5,
+                                              child.leadingIcon ??
+                                                  const SizedBox.shrink(),
+                                              AnimatedSize(
+                                                duration: const Duration(
+                                                    milliseconds: 300),
+                                                child: controller.isMenuOpen
+                                                    ? const SizedBox(width: 10)
+                                                    : const SizedBox.shrink(),
                                               ),
-                                            ),
-                                            child.leadingIcon ??
-                                                const SizedBox.shrink(),
-                                            AnimatedSize(
-                                              duration: const Duration(
-                                                  milliseconds: 300),
-                                              child: controller.isMenuOpen
-                                                  ? const SizedBox(width: 10)
-                                                  : const SizedBox.shrink(),
-                                            ),
-                                            AnimatedSize(
-                                              duration: const Duration(
-                                                  milliseconds: 300),
-                                              child: controller.isMenuOpen
-                                                  ? Text(
-                                                      child.title,
-                                                      style: const TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 16,
-                                                      ),
-                                                    )
-                                                  : const SizedBox.shrink(),
-                                            ),
-                                            const Spacer(),
-                                            AnimatedSize(
-                                              duration: const Duration(
-                                                milliseconds: 300,
+                                              AnimatedSize(
+                                                duration: const Duration(
+                                                    milliseconds: 300),
+                                                child: controller.isMenuOpen
+                                                    ? Text(
+                                                        child.title,
+                                                        style: const TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 16,
+                                                        ),
+                                                      )
+                                                    : const SizedBox.shrink(),
                                               ),
-                                              child: controller.isMenuOpen
-                                                  ? child.trailingIcon ??
-                                                      const SizedBox.shrink()
-                                                  : const SizedBox.shrink(),
-                                            ),
-                                          ],
+                                              const Spacer(),
+                                              AnimatedSize(
+                                                duration: const Duration(
+                                                  milliseconds: 300,
+                                                ),
+                                                child: controller.isMenuOpen
+                                                    ? child.trailingIcon ??
+                                                        const SizedBox.shrink()
+                                                    : const SizedBox.shrink(),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         },
