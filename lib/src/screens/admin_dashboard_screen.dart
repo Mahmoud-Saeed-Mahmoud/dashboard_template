@@ -91,8 +91,12 @@ class AdminDashboardScreen extends GetView<SideMenuController> {
                                             ? Text(
                                                 controller
                                                     .sideMenuItems[index].title,
-                                                style: const TextStyle(
-                                                  color: Colors.black,
+                                                style: TextStyle(
+                                                  color: controller
+                                                          .sideMenuItems[index]
+                                                          .isSelected
+                                                      ? Colors.blue
+                                                      : Colors.black,
                                                   fontSize: 16,
                                                 ),
                                               )
@@ -112,7 +116,7 @@ class AdminDashboardScreen extends GetView<SideMenuController> {
                                   ),
                                   if (controller
                                       .sideMenuItems[index].isExpanded)
-                                    ...controller.sideMenuItems[index].children!
+                                    ...controller.sideMenuItems[index].children
                                         .map(
                                       (child) => InkWell(
                                         onTap: child.onTap,
@@ -141,8 +145,11 @@ class AdminDashboardScreen extends GetView<SideMenuController> {
                                                 child: controller.isMenuOpen
                                                     ? Text(
                                                         child.title,
-                                                        style: const TextStyle(
-                                                          color: Colors.black,
+                                                        style: TextStyle(
+                                                          color: child
+                                                                  .isSelected
+                                                              ? Colors.blue
+                                                              : Colors.black,
                                                           fontSize: 16,
                                                         ),
                                                       )
